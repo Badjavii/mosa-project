@@ -1,4 +1,23 @@
-# downloader.py
+# ./main.py
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+@app.get("/users/sign_up")
+def sign_up():
+    code: int = user_sevice.sign_up()
+    return {"account_code": code}
+
+@app.get("/users/sign_in/{account_code}")
+def sign_in(account_code: int):
+    permission: bool = user_service.sign_in()
+    return {"status": permission}
+
+@app.get("/playlist/search/{playlist_id}")
+def se
+
+
 import yt_dlp as downloader 
 import os
 from mutagen.easyid3 import EasyID3
@@ -91,7 +110,6 @@ def show_menu():
     print("0. Exit")
     
     option = input("\n> Select an option (0-6): ")
-    
     if option.isdigit():
         opt = int(option)
         if (opt > 6) or (opt < 0):
