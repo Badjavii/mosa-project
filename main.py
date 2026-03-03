@@ -1,5 +1,5 @@
 # downloader.py
-import yt_dlp as downloader  # Corregido: dlp no dpl
+import yt_dlp as downloader 
 import os
 from mutagen.easyid3 import EasyID3
 
@@ -76,7 +76,8 @@ def main_menu(destiny):
     print(f"Current path: {destiny}")
     print("-" * 30)
     print("1. Set working path")
-    print("2. Songs (download)")
+    print("2. Manage of songs")
+    print()
 
 
 def show_menu(): 
@@ -102,18 +103,32 @@ def show_menu():
         print("[!] Error: Only numbers")
         return -1
 
-# === main ===
-if __name__ == "__main__":
+def exists_path(destiny):
+    if not os.path.exists(destiny):
+        return False
+    else: 
+        return True
 
-    os.system("clear")
-    print("Welcome!")
+def set_new_path():
+    destiny = ""
     while True:
-        dest = input("> USB drive path: ")
+        dest = input("> Submit target path: ")
         if not os.path.exists(dest):
-            print(f"[!] Error: The path does not exist.")
+            print("[!] Error: The path does not exist.")
         else:
             print("[+] The route was set correctly")
-            break
+            return destiny
+    
+
+# === main ===
+if __name__ == "__main__":
+    
+    os.system("clear")
+    print("Welcome!")
+    dest = "/home/badjavii/Music"
+    
+    if (exists_path(dest) == False):
+        dest = set_new_path()
 
     while True:
         os.system("clear")
