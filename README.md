@@ -54,10 +54,10 @@ No email. No password. No data collection. Just music, privacy and freedom.
 MOSA is based on a simple general architecture.
 
 ```
-mosa/
-├── src/
-│   ├── backend/
-│   └── frontend/
+mosa-project/
+└─ src/
+   ├── backend/
+   └── frontend/
 ```
 
 Additionally, the frontend and backend architectures are tied to the functionality of the frameworks used for each one. For more information, please read the following files:
@@ -89,7 +89,7 @@ Finally, the MOSA project is committed to not collecting user data of any kind. 
 
 ## Project philosophy
 
-The MOSA project is based on the philosophy of free software, open-source software, and software as a solution to real-world problems. To better understand the philosophy behind this project, please review the [Philosophy and Motivation](./documents/) file.
+The MOSA project is based on the philosophy of free software, open-source software, and software as a solution to real-world problems. To better understand the philosophy behind this project, please review the [Philosophy and Motivation](./documents/philosophy.md) file.
 
 By reading it, you will likely understand the significance this can have for people — and you will probably reflect on how you build software.
 
