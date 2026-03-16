@@ -57,13 +57,22 @@ The MOSA backend is the component responsible for managing all server-side logic
 # 1. Navigate to the directory
 cd src/backend
 
-# 2. Activate the virtual environment
+# 2. Clean up any existing virtual environment.
+rm -rf .venv
+
+# 3. Create a new virtual environment\
+python3 -m venv .venv
+
+# 4. Activate the virtual environment
 source .venv/bin/activate
 
-# 3. Run migrations (only the first time or after database changes)
+# 5. Install the dependencies inside the venv
+pip install -r requirements.txt
+
+# 6. Run migrations (only the first time or after database changes)
 alembic upgrade head
 
-# 4. Start the server
+# 7. Start the server
 uvicorn main:app --reload
 ```
 
