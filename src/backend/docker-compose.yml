@@ -1,0 +1,41 @@
+services:
+
+  db:
+    image: postgres:16-alpine
+    container_name: music_manager_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-music_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-music_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-music_manager}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-music_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: .
+    container_name: music_manager_backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-music_user}:${POSTGRES_PASSWORD:-music_pass}@db:5432/${POSTGRES_DB:-music_manager}
+      SECRET_KEY: ${SECRET_KEY:-change-this-in-production}
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 1440
+      DOWNLOADS_DIR: /tmp/music_manager/downloads
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - downloads_data:/tmp/music_manager/downloads
+
+volumes:
+  postgres_data:
+  downloads_data:
