@@ -37,7 +37,7 @@ def test_delete_playlist(client):
     response = client.delete(f"/playlists/{playlist_id}", headers=headers)
     assert response.status_code == 204
 
-    # Ya no debe existir
+    # It should no longer exist.
     get = client.get(f"/playlists/{playlist_id}", headers=headers)
     assert get.status_code == 404
 

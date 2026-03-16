@@ -11,11 +11,11 @@ def test_sign_up_returns_account_code(client):
 
 
 def test_sign_in_with_valid_code(client):
-    # Crear cuenta
+    # Create account
     sign_up = client.post("/auth/sign_up")
     account_code = sign_up.json()["account_code"]
 
-    # Iniciar sesión
+    # Log in
     response = client.post("/auth/sign_in", json={"account_code": account_code})
     assert response.status_code == 200
     data = response.json()
@@ -39,6 +39,6 @@ def test_delete_account(client):
     )
     assert response.status_code == 204
 
-    # Ya no debe poder iniciar sesión
+    # You can no longer log in.
     sign_in = client.post("/auth/sign_in", json={"account_code": account_code})
     assert sign_in.status_code == 401

@@ -3,7 +3,7 @@ FROM python:3.12-slim AS builder
 
 WORKDIR /app
 
-# Dependencias del sistema para psycopg2 y yt-dlp
+# System dependencies for psycopg2 and yt-dlp
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libpq-dev \
@@ -19,20 +19,20 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# ffmpeg es necesario para que yt-dlp convierta a mp3
+# ffmpeg is required for yt-dlp to convert to MP3.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# Copia dependencias instaladas del builder
+# Copy installed dependencies from the builder
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
-# Copia el código fuente
+# Copy the source code
 COPY . .
 
-# Directorio de descargas
+# Download Directory
 RUN mkdir -p /tmp/music_manager/downloads
 
 EXPOSE 8000
