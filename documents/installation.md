@@ -35,6 +35,12 @@ brew install python postgresql ffmpeg node git
 npm install -g @angular/cli
 ```
 
+## Clone repository on your machine
+```bash
+git clone https://github.com/Badjavii/mosa-project.git
+cd mosa-project
+```
+
 ## Backend
 
 ### Installation

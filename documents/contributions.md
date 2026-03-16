@@ -20,8 +20,8 @@ Your contributions to the repository help the project in various ways. For examp
 
 2. **Clone** your fork locally:
    ```bash
-   git clone https://github.com/your-username/mosa.git
-   cd mosa
+   git clone https://github.com/Badjavii/mosa-project.git
+   cd mosa-project
    ```
 
 3. **Create a branch** for your contribution using a descriptive name:
